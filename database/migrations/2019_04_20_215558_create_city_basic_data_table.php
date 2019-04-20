@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateCityBasicDataTable extends Migration
 {
@@ -14,7 +14,12 @@ class CreateCityBasicDataTable extends Migration
     public function up()
     {
         Schema::create('city_basic_data', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->string('city');
+            $table->text('disziplinen');
+            $table->text('startgeld');
+            $table->text('ablauf');
+            $table->text('leistungen');
             $table->timestamps();
         });
     }

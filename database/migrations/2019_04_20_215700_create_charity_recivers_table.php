@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateCharityReciversTable extends Migration
 {
@@ -14,7 +14,11 @@ class CreateCharityReciversTable extends Migration
     public function up()
     {
         Schema::create('charity_recivers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('city_basic_data_id')->unsigned()->index();
+            $table->foreign('city_basic_data_id')->references('id')->on('city_basic_data');
+            $table->string('charity_reciver_name');
+            $table->binary('image');
             $table->timestamps();
         });
     }
