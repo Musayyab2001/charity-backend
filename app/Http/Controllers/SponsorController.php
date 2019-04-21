@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SponsorResource;
+use App\Model\CityBasicData;
 use App\Model\Sponsor;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class SponsorController extends Controller
      */
     public function index()
     {
-        //
+        $data = Sponsor::all();
+        return SponsorResource::collection($data);
     }
 
     /**
@@ -44,9 +47,10 @@ class SponsorController extends Controller
      * @param  \App\Model\Sponsor  $sponsor
      * @return \Illuminate\Http\Response
      */
-    public function show(Sponsor $sponsor)
+    public function show($id)
     {
-        //
+        $data = CityBasicData::find($id)->sponsors;
+        return SponsorResource::collection($data);
     }
 
     /**
