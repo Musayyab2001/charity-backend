@@ -18,7 +18,7 @@ class CreateSponsorsTable extends Migration
             $table->integer('city_basic_data_id')->unsigned()->index();
             $table->foreign('city_basic_data_id')->references('id')->on('city_basic_data');
             $table->string('sponsor_name');
-            $table->binary('image');
+            $table->string('image');
             $table->timestamps();
         });
     }
