@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CityBasicData\CityBasicDataCollection;
 use App\Http\Resources\CityBasicData\CityBasicDataResource;
 use App\Model\CityBasicData;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class CityBasicDataController extends Controller
      */
     public function index()
     {
-        return CityBasicData::all();
+        $data = CityBasicData::all();
+        return CityBasicDataCollection::collection($data);
     }
 
     /**

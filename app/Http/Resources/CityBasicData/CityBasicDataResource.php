@@ -23,6 +23,10 @@ class CityBasicDataResource extends JsonResource
             'leistungen' => $this->leistungen,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'href' => [
+                'sponsors' => route('sponsors.index', $this->id),
+                'charityrecivers' => route('charityrecivers.index', $this->id),
+            ],
         ];
     }
 }
