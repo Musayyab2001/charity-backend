@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CharityReciverResource;
 use App\Model\CharityReciver;
+use App\Model\CityBasicData;
 use Illuminate\Http\Request;
 
 class CharityReciverController extends Controller
@@ -14,7 +16,8 @@ class CharityReciverController extends Controller
      */
     public function index()
     {
-        //
+        $data = CharityReciver::all();
+        return CharityReciverResource::collection($data);
     }
 
     /**
@@ -44,9 +47,10 @@ class CharityReciverController extends Controller
      * @param  \App\Model\CharityReciver  $charityReciver
      * @return \Illuminate\Http\Response
      */
-    public function show(CharityReciver $charityReciver)
+    public function show($id)
     {
-        //
+        $data = CityBasicData::find($id)->charityReciver;
+        return CharityReciverResource::collection($data);
     }
 
     /**
