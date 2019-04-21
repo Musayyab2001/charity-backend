@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\CityBasicData;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\Resource;
 
-class CityBasicDataCollection extends ResourceCollection
+class CityBasicDataCollection extends Resource
 {
     /**
      * Transform the resource collection into an array.
@@ -14,6 +14,17 @@ class CityBasicDataCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'city' => $this->city,
+            'disziplinen' => $this->disziplinen,
+            'startgeld' => $this->startgeld,
+            'ablauf' => $this->ablauf,
+            'leistungen' => $this->leistungen,
+            'href' => [
+                'sponsors' => route('citybasicdata.show', $this->id),
+            ],
+
+        ];
     }
 }
