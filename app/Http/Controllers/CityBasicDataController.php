@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CityBasicData\CityBasicDataResource;
 use App\Model\CityBasicData;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class CityBasicDataController extends Controller
      */
     public function index()
     {
-        //
+        return CityBasicData::all();
     }
 
     /**
@@ -44,9 +45,10 @@ class CityBasicDataController extends Controller
      * @param  \App\Model\CityBasicData  $cityBasicData
      * @return \Illuminate\Http\Response
      */
-    public function show(CityBasicData $cityBasicData)
+    public function show($id)
     {
-        //
+        $data = CityBasicData::find($id);
+        return new CityBasicDataResource($data);
     }
 
     /**
