@@ -22,7 +22,7 @@ class CityBasicDataCollection extends Resource
             'ablauf' => $this->ablauf,
             'leistungen' => $this->leistungen,
             'href' => [
-                'sponsors' => route('citybasicdata.show', $this->id),
+                'city' => route('citybasicdata.show', $this->id),
             ],
 
         ];
