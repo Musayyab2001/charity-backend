@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class CityBasicDataController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +24,15 @@ class CityBasicDataController extends Controller
     {
         $data = CityBasicData::all();
         return CityBasicDataCollection::collection($data);
+    }
+
+    /**
+     * Render the view.
+     *
+     */
+    public function basic()
+    {
+        return view('basic');
     }
 
     /**
