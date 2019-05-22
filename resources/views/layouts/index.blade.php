@@ -150,6 +150,7 @@
 
             // Make all Textareas WYSIWYG
             bkLib.onDomLoaded(nicEditors.allTextAreas);
+
         </script>
 </body>
 

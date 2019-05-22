@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CharityReciverResource;
-use App\Model\CharityReciver;
-use App\Model\CityBasicData;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CharityReciverController extends Controller
 {
@@ -16,74 +13,41 @@ class CharityReciverController extends Controller
      */
     public function index()
     {
-        $data = CharityReciver::all();
-        return CharityReciverResource::collection($data);
+        return view('spenden');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function updateCharityReceiverDB($charity_receiver_name, $imageLink)
     {
-        //
+        $city = "Brakusview";
+
+        DB::insert('INSERT INTO charity_recivers SET
+        charity_reciver_name="' . $charity_receiver_name . '",
+        image="' . $imageLink . '",
+        city_basic_data_id=(SELECT id FROM city_basic_data WHERE city_basic_data.city ="' . $city . '")');
+
+        return redirect('/spenden');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function imageUploadPost()
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\CharityReciver  $charityReciver
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $data = CityBasicData::find($id)->charityReciver;
-        return CharityReciverResource::collection($data);
-    }
+        request()->validate([
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\CharityReciver  $charityReciver
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CharityReciver $charityReciver)
-    {
-        //
-    }
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required',
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\CharityReciver  $charityReciver
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CharityReciver $charityReciver)
-    {
-        //
-    }
+        $imageText = request()->name;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Model\CharityReciver  $charityReciver
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CharityReciver $charityReciver)
-    {
-        //
+        $imageName = time() . '.' . request()->image->getClientOriginalExtension();
+        $imagelink = "https://$_SERVER[HTTP_HOST]/images/" . $imageName;
+
+        request()->image->move(public_path('images'), $imageName);
+
+        $this->updateCharityReceiverDB($imageText, $imagelink);
+
+        return back()
+            ->with('success', 'You have successfully upload image.')
+            ->with('image', $imageName);
     }
 }

@@ -18,7 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/basic', 'CityBasicDataController@basic')->name('basic');
 
 Route::resource('basic', 'CityBasicDataController');
 Route::post('basic', 'CityBasicDataController@updateBasicData');
+
+Route::resource('spendenempfaenger', 'CharityReciverController');
+Route::post('spendenempfaenger', 'CharityReciverController@imageUploadPost')->name('image.upload.post');
+// Route::post('spendenempfaenger', 'CityBasicDataController@updateBasicData');
