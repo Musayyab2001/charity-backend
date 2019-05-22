@@ -20,9 +20,6 @@ class CityBasicDataController extends Controller
     {
         $data = DB::select('select * from city_basic_data where city = "Brakusview"')[0];
         $data = json_decode(json_encode($data), true);
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
         return view('basic')->with($data);
     }
 

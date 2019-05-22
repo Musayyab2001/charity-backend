@@ -5,21 +5,7 @@
         <div class="card mrg_bottom">
             <div class="page_title_block">
                 <div class="col-md-5 col-xs-12">
-                    <div class="page_title">Spendenempfaenger</div>
-                </div>
-                <div class="col-md-7 col-xs-12">
-                    <div class="search_list">
-                        <button type="button" name="add" id="add" class="btn btn-info">Add</button>
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="row mrg-top">
-                <div class="col-md-12">
-
-                    <div class="col-md-12 col-sm-12">
-
-                    </div>
+                    <div class="page_title">Spendenempfänger</div>
                 </div>
             </div>
 
@@ -55,9 +41,8 @@
 
 
             <div class="col-md-12 mrg-top">
-                <div id="alert_message"></div>
-                <table id="user_data" class="table table-striped table-bordered table-hover dataTable no-footer"
-                    role="grid" aria-describedby="user_data_info" style="width: 1648px;">
+                <table id="user_data" class="table table-striped table-bordered table-hover no-footer" role="grid"
+                    aria-describedby="user_data_info" style="width: 1648px;">
                     <thead>
                         <tr role="row">
                             <th class="sorting" tabindex="0" aria-controls="user_data" rowspan="1" colspan="1"
@@ -74,7 +59,7 @@
 
                                 @csrf
 
-                                <td contenteditable="" spellcheck="false">
+                                <td spellcheck="false">
                                     <input type="text" name="name" value="">
                                 </td>
 
@@ -89,6 +74,28 @@
 
                             </form>
                         </tr>
+
+                        @if ($data)
+                        @foreach ($data as $reciever)
+                        <tr role="row" class="odd">
+                            <td>
+                                <div class="update" data-id="13" data-column="sponsoren_name">
+                                    {{$reciever['charity_reciver_name']}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="update" data-id="13" data-column="image_name">
+                                    <img src="{{$reciever['image']}}" width="120" class="img-thumnail">
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" name="delete" class="btn btn-danger btn-xs delete"
+                                    id="13">Delete</button>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @endif
+
                     </tbody>
                 </table>
             </div>
