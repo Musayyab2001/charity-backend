@@ -19,12 +19,14 @@
 
     <script src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
 
+
     <!-- Live Table editing -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 
 </head>
@@ -33,7 +35,7 @@
     <div class="app app-default">
         <aside class="app-sidebar" id="sidebar">
             <div class="sidebar-header">
-                <a class="sidebar-brand" href="home.php"><img src="{{ asset('images/Icon.png') }}" alt="app logo" /></a>
+                <a class="sidebar-brand" href="home"><img src="{{ asset('images/Icon.png') }}" alt="app logo" /></a>
                 <button type="button" class="sidebar-toggle"> <i class="fa fa-times"></i> </button>
             </div>
             <div class="sidebar-menu">
@@ -92,7 +94,7 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown profile">
-                                <a href="profile.php" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="profile" class="dropdown-toggle" data-toggle="dropdown">
                                     <img class="profile-img" src="{{ asset('images/profile.png') }}">
                                     <div class="title">Profile</div>
                                 </a>
@@ -101,8 +103,16 @@
                                         <h4 class="username">Admin</h4>
                                     </div>
                                     <ul class="action">
-                                        <li><a href="register.php">Register New User</a></li>
-                                        <li><a href="logout.php">Logout</a></li>
+                                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
+
                                     </ul>
                                 </div>
                             </li>
@@ -112,7 +122,9 @@
             </nav>
             <div class="btn-floating" id="help-actions">
                 <div class="btn-bg"></div>
-                <button type="button" class="btn btn-default btn-toggle" data-toggle="toggle" data-target="#help-actions"> <i class="icon fa fa-plus"></i> <span class="help-text">Shortcut</span> </button>
+                <button type="button" class="btn btn-default btn-toggle" data-toggle="toggle"
+                    data-target="#help-actions"> <i class="icon fa fa-plus"></i> <span class="help-text">Shortcut</span>
+                </button>
                 <div class="toggle-content">
                     <ul class="actions">
                         <li><a href="#" target="_blank">Website</a></li>
@@ -127,7 +139,7 @@
         </div>
         <script type="text/javascript" src="{{ asset('assets/js/vendor.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
-        <script src="{{ asset('assets/js/nicEdit-latest.js" type="text/javascript') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/js/nicEdit-latest.js') }}"></script>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

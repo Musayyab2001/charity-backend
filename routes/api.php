@@ -17,8 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::Resource('citybasicdata', 'CityBasicDataController');
+Route::Resource('citybasicdata', 'api\ApiCityBasicDataController');
 
-Route::Resource('charityrecivers', 'CharityReciverController');
+Route::Resource('charityrecivers', 'api\ApiCharityReciverController');
 
-Route::Resource('sponsors', 'SponsorController');
+Route::Resource('sponsors', 'api\ApiSponsorController');
