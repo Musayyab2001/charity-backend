@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CityBasicData\CityBasicDataCollection;
-use App\Http\Resources\CityBasicData\CityBasicDataResource;
-use App\Model\CityBasicData;
+use App\Http\Controllers\View;
+use DB;
+use function GuzzleHttp\json_decode;
+use function GuzzleHttp\json_encode;
 use Illuminate\Http\Request;
 
 class CityBasicDataController extends Controller
@@ -15,90 +16,27 @@ class CityBasicDataController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $data = CityBasicData::all();
-        return CityBasicDataCollection::collection($data);
+        $data = DB::select('select * from city_basic_data where city = "Brakusview"')[0];
+        $data = json_decode(json_encode($data), true);
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+        return view('basic')->with($data);
     }
 
-    /**
-     * Render the view.
-     *
-     */
-    public function basic()
+    public function updateBasicData(Request $request)
     {
-        return view('basic');
-    }
+        $this->validate($request, ['disziplinen' => 'required', 'startgeld' => 'required', 'ablaufCharityWalk' => 'required', 'leistungen' => 'required']);
+        $disziplinen = $request->input('disziplinen');
+        $startgeld = $request->input('startgeld');
+        $ablaufCharityWalk = $request->input('ablaufCharityWalk');
+        $leistungen = $request->input('leistungen');
+        $city = "Brakusview";
+        DB::update('update city_basic_data set
+                    disziplinen="' . $disziplinen . '", startgeld="' . $startgeld . '", ablauf="' . $ablaufCharityWalk . '", leistungen="' . $leistungen . '" where city ="' . $city . '"');
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\CityBasicData  $cityBasicData
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $data = CityBasicData::find($id);
-        return new CityBasicDataResource($data);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\CityBasicData  $cityBasicData
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CityBasicData $cityBasicData)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\CityBasicData  $cityBasicData
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CityBasicData $cityBasicData)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Model\CityBasicData  $cityBasicData
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CityBasicData $cityBasicData)
-    {
-        //
+        return redirect('/basic');
     }
 }
