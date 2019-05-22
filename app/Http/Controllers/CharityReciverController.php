@@ -13,7 +13,12 @@ class CharityReciverController extends Controller
      */
     public function index()
     {
-        return view('spenden');
+        $data = DB::select('select charity_reciver_name, image from charity_recivers inner join city_basic_data on city_basic_data.id = charity_recivers.city_basic_data_id where city = "Brakusview"');
+        $data = json_decode(json_encode($data), true);
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+        return view('spenden', compact('data'));
     }
 
     public function updateCharityReceiverDB($charity_receiver_name, $imageLink)
