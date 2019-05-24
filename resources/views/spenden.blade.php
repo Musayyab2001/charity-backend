@@ -19,7 +19,11 @@
 
             </div>
 
-            <img src="images/{{ Session::get('image') }}">@endif @if (count($errors) > 0)
+            {{-- <img src="images/charity-recievers/{{ Session::get('image') }}"> --}}
+
+            @endif
+
+            @if (count($errors) > 0)
 
             <div class="alert alert-danger">
 
@@ -89,8 +93,12 @@
                                 </div>
                             </td>
                             <td>
-                                <button type="button" name="delete" class="btn btn-danger btn-xs delete"
-                                    id="13">Delete</button>
+                                {!! Form::open(['action' => ['CharityReciverController@destroy', $reciever['id']],
+                                'method' =>
+                                'POST']) !!}
+                                {{Form::hidden('_method', 'DELETE')}}
+                                {{Form::submit('Delete', ['class' => 'btn btn-danger btn-xs delete'])}}
+                                {!! Form::close() !!}
                             </td>
                         </tr>
                         @endforeach

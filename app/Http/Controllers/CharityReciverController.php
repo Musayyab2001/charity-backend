@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\CharityReciver;
 use Illuminate\Support\Facades\DB;
 
 class CharityReciverController extends Controller
@@ -13,11 +14,8 @@ class CharityReciverController extends Controller
      */
     public function index()
     {
-        $data = DB::select('select charity_reciver_name, image from charity_recivers inner join city_basic_data on city_basic_data.id = charity_recivers.city_basic_data_id where city = "Brakusview"');
+        $data = DB::select('select charity_recivers.id, charity_reciver_name, image from charity_recivers inner join city_basic_data on city_basic_data.id = charity_recivers.city_basic_data_id where city = "Brakusview"');
         $data = json_decode(json_encode($data), true);
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
         return view('spenden', compact('data'));
     }
 
@@ -45,14 +43,32 @@ class CharityReciverController extends Controller
         $imageText = request()->name;
 
         $imageName = time() . '.' . request()->image->getClientOriginalExtension();
-        $imagelink = "https://$_SERVER[HTTP_HOST]/images/" . $imageName;
+        $imagelink = "https://$_SERVER[HTTP_HOST]/images/charity-recievers/" . $imageName;
 
-        request()->image->move(public_path('images'), $imageName);
+        request()->image->move(public_path('images/charity-recievers'), $imageName);
 
         $this->updateCharityReceiverDB($imageText, $imagelink);
 
         return back()
             ->with('success', 'You have successfully upload image.')
             ->with('image', $imageName);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $image = CharityReciver::find($id);
+        $uri_parts = explode('/', $image->image);
+        $file_path = public_path() . '\images\charity-recievers\\' . end($uri_parts);
+
+        unlink($file_path);
+        $image->delete();
+
+        return redirect('/spendenempfaenger')->with('success', 'Image deleted');
     }
 }
