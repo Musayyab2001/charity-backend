@@ -59,7 +59,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('speden.image.upload.post') }}" method="POST"
+                                enctype="multipart/form-data">
 
                                 @csrf
 

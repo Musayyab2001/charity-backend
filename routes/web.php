@@ -23,6 +23,7 @@ Route::resource('basic', 'CityBasicDataController');
 Route::post('basic', 'CityBasicDataController@updateBasicData');
 
 Route::resource('spendenempfaenger', 'CharityReciverController');
-Route::post('spendenempfaenger', 'CharityReciverController@imageUploadPost')->name('image.upload.post');
-// Route::post('spendenempfaenger/{id}', 'CharityReciverController@destroy');
-// Route::post('spendenempfaenger', 'CityBasicDataController@updateBasicData');
+Route::post('spendenempfaenger', 'CharityReciverController@imageUploadPost')->name('speden.image.upload.post');
+
+Route::resource('sponsoren', 'SponsorController');
+Route::post('sponsoren', 'SponsorController@imageUploadPost')->name('sponsor.image.upload.post');
