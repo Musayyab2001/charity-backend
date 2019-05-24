@@ -24,4 +24,5 @@ Route::post('basic', 'CityBasicDataController@updateBasicData');
 
 Route::resource('spendenempfaenger', 'CharityReciverController');
 Route::post('spendenempfaenger', 'CharityReciverController@imageUploadPost')->name('image.upload.post');
+// Route::post('spendenempfaenger/{id}', 'CharityReciverController@destroy');
 // Route::post('spendenempfaenger', 'CityBasicDataController@updateBasicData');
