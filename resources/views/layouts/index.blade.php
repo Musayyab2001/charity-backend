@@ -67,6 +67,20 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a href="sponsoren">
+                            <div class="icon"> <i class="fa fa-cog" aria-hidden="true"></i> </div>
+                            <div class="title">CSV Upload</div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="sponsoren">
+                            <div class="icon"> <i class="fa fa-cog" aria-hidden="true"></i> </div>
+                            <div class="title">Ergebnisse</div>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
 

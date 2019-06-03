@@ -27,3 +27,5 @@ Route::post('spendenempfaenger', 'CharityReciverController@imageUploadPost')->na
 
 Route::resource('sponsoren', 'SponsorController');
 Route::post('sponsoren', 'SponsorController@imageUploadPost')->name('sponsor.image.upload.post');
+
+Route::get('/csv', 'CsvFileController@index')->name('csv');
