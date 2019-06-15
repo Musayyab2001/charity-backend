@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\View;
 use DB;
-use function GuzzleHttp\json_decode;
-use function GuzzleHttp\json_encode;
 use Illuminate\Http\Request;
 
 class CityBasicDataController extends Controller
@@ -18,9 +15,15 @@ class CityBasicDataController extends Controller
 
     public function index()
     {
-        $data = DB::select('select * from city_basic_data where city = "Brakusview"')[0];
-        $data = json_decode(json_encode($data), true);
-        return view('basic')->with($data);
+        $data = DB::select('select * from city_basic_data where city = "Brakusview"');
+
+        if (sizeof($data) > 0) {
+            $data = json_decode(json_encode($data[0]), true);
+            return view('basic')->with($data);
+        } else {
+            return view('basic');
+        }
+
     }
 
     public function updateBasicData(Request $request)

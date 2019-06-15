@@ -13,6 +13,9 @@
                 <div class="col-md-12 col-sm-12"></div>
             </div>
         </div>
+
+        @if(isset($disziplinen, $startgeld, $ablauf, $leistungen))
+
         <div class="card-body mrg_bottom">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
@@ -73,6 +76,15 @@
                 </div>
             </div>
         </div>
+
+        @else
+
+        <div class="card-body mrg_bottom">
+            <h2>No Data found!</h2>
+        </div>
+
+        @endif
+
     </div>
 </div>
 
