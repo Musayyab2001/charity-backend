@@ -32,6 +32,12 @@ class SponsorController extends Controller
         return redirect('/sponsoren');
     }
 
+    /**
+     * imageUploadPost
+     * Uploads an image file to images/sponsors
+     *
+     * @return void
+     */
     public function imageUploadPost()
     {
 
