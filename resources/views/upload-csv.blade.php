@@ -41,19 +41,45 @@
 
             @endif
             <div class="col-md-12 mrg-top mrg_bottom">
-                <form action="{{ route('csv.file.upload.post') }}" method="POST" enctype="multipart/form-data">
+                <div class="col-md-4 mrg-top mrg_bottom"></div>
+                <div class="col-md-3 mrg-top mrg_bottom">
+                    <form action="{{ route('csv.file.upload.post') }}" method="POST" enctype="multipart/form-data">
 
-                    @csrf
+                        @csrf
 
-                    <td>
-                        <input type="file" name="file" class="form-control">
-                    </td>
+                        <td>
+                            <label for="stadt">Stadt auswählen:</label>
+                            <input list="cities" name="stadt" placeholder="Stadt auswählen" class="form-control">
+                            <datalist id="cities">
+                                @foreach($cities as $city)
+                                <option value="{{$city->city}}">
+                                    @endforeach
+                            </datalist>
+                        </td>
 
-                    <td>
-                        <button type="submit" name="insert" id="insert" class="btn btn-success btn-md">Upload</button>
-                    </td>
+                        <td>
+                            <label for="stadt">Lauf jahr eingeben:</label>
+                            <input type="text" name="jahr" class="form-control" placeholder="Lauf jahr eingeben">
+                        </td>
 
-                </form>
+                        <td>
+                            <label for="stadt">Lauf strecke eingeben:</label>
+                            <input type="text" name="strecke" class="form-control" placeholder="Lauf strecke eingeben">
+                        </td>
+
+                        <td>
+                            <label for="stadt">CSV Datei Hochladen:</label>
+                            <input type="file" name="file" class="form-control">
+                        </td>
+
+                        <td>
+                            <button type="submit" name="insert" id="insert"
+                                class="btn btn-success btn-md">Upload</button>
+                        </td>
+
+                    </form>
+                </div>
+
             </div>
 
 
