@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Ergebnisse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Rap2hpoutre\FastExcel\FastExcel;
 
@@ -12,7 +13,8 @@ class CsvFileController extends Controller
 
     public function index()
     {
-        return view('upload-csv');
+        $cities = DB::select('select city from city_basic_data');
+        return view('upload-csv', compact('cities'));
     }
 
     public function upload(Request $request)
@@ -20,6 +22,9 @@ class CsvFileController extends Controller
 
         $validator = Validator::make($request->all(), [
             'file' => 'required',
+            'stadt' => 'required',
+            'strecke' => 'required',
+            'jahr' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -30,9 +35,9 @@ class CsvFileController extends Controller
         $file_path = public_path('uploaded-files/ergebniss.csv');
         $collection = (new FastExcel)->configureCsv(';')->import($file_path, function ($line) {
             return Ergebnisse::firstOrCreate([
-                'stadt' => 'hamburg',
-                'lauf_jahr' => '2019',
-                'lauf_strecke' => '4',
+                'stadt' => request()->stadt,
+                'lauf_jahr' => (int) request()->jahr,
+                'lauf_strecke' => (double) request()->strecke,
                 'MWPl' => $line['MWPl'],
                 'AKPl' => $line['AKPl'],
                 'start_number' => $line['Startnr.'],
