@@ -1,0 +1,129 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 1280px !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.sticky_bottom {
+    margin-top: auto;
+}
+
+.gradient_bg {
+    background: linear-gradient(
+        to right top,
+        rgba(0, 138, 163, 0.8),
+        rgba(130, 201, 41, 0.8)
+    );
+}
+
+.h_35 {
+    height: 35px;
+}
+
+.h_15 {
+    height: 15px;
+}
+
+.top_heading {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 40px;
+    letter-spacing: 18px;
+    font-style: italic;
+    white-space: nowrap;
+    background: -webkit-linear-gradient(
+        rgba(0, 138, 163, 1),
+        rgba(130, 201, 41, 1)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.urkunde {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.urkunde > h1 {
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 100px;
+    font-weight: 700;
+    padding: 50px;
+}
+
+.cw_logo {
+    margin-top: 65px;
+    margin-bottom: 20px;
+}
+
+.cw_logo > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 330px;
+}
+
+.cw_info_blue > h2 {
+    color: #008da5;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.runner_info {
+    color: #201e1f;
+    text-align: center;
+}
+
+.runner_info > p {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.cw_year {
+    font-size: 100px;
+    font-style: italic;
+    font-weight: 700;
+    margin: 55px 0 55px 0;
+}
+
+.runner_3_details {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.2;
+    display: inline-flex;
+}
+
+.runner_3_details span {
+    margin: 0 40px 0 40px;
+}
+
+.signature {
+    margin: 20px 0 20px 0;
+    text-align: center;
+}
+
+.sign h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.sign_bottom {
+    line-height: 0.3;
+    font-size: 12px;
+}
+
+.site_link_bottom {
+    color: #ffffff;
+    margin-top: 7px;
+    margin-right: 10px;
+    float: right;
+}
