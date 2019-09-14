@@ -14,9 +14,16 @@ class CharityReciverController extends Controller
      */
     public function index()
     {
+        $cityVerify = DB::select('select city from city_basic_data where city = "Brakusview"');
+        if (sizeof($cityVerify) == 1) {
+            $noCity = "City added";
+        } else {
+            $noCity = "City Not added";
+        }
+
         $data = DB::select('select charity_recivers.id, charity_reciver_name, image from charity_recivers inner join city_basic_data on city_basic_data.id = charity_recivers.city_basic_data_id where city = "Brakusview"');
         $data = json_decode(json_encode($data), true);
-        return view('spenden', compact('data'));
+        return view('spenden', compact(['data', 'noCity']));
     }
 
     public function updateCharityReceiverDB($charity_receiver_name, $imageLink)
