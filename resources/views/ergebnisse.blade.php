@@ -17,9 +17,12 @@
                     aria-describedby="user_data_info" style="width: 1648px;">
                     <thead>
                         <tr>
+                            <th>Lauf</th>
                             <th>Stadt</th>
+                            <th>Datum</th>
                             <th>Lauf Jahr</th>
                             <th>Lauf Strecke</th>
+                            <th>Gesamt-PL</th>
                             <th>MWPl</th>
                             <th>AKPl</th>
                             <th>Startnr.</th>
@@ -35,9 +38,12 @@
                     <tbody>
                         @foreach($ergebnisse as $ergebniss)
                         <tr>
+                            <td>{{ $ergebniss->lauf }}</td>
                             <td>{{ $ergebniss->stadt }}</td>
+                            <td>{{ $ergebniss->datum }}</td>
                             <td>{{ $ergebniss->lauf_jahr }}</td>
                             <td>{{ $ergebniss->lauf_strecke }}</td>
+                            <td>{{ $ergebniss->gesamt_pl }}</td>
                             <td>{{ $ergebniss->MWPl }}</td>
                             <td>{{ $ergebniss->AKPl }}</td>
                             <td>{{ $ergebniss->start_number }}</td>

@@ -43,7 +43,7 @@
 
             @endif
 
-
+            @if($noCity != "City Not added")
             <div class="col-md-12 mrg-top">
                 <table id="user_data" class="table table-striped table-bordered table-hover no-footer" role="grid"
                     aria-describedby="user_data_info" style="width: 1648px;">
@@ -79,8 +79,9 @@
 
                             </form>
                         </tr>
+                        @endif
 
-                        @if ($data)
+                        @if ($data && $noCity != "City Not added")
                         @foreach ($data as $reciever)
                         <tr role="row" class="odd">
                             <td>
@@ -105,9 +106,20 @@
                         @endforeach
                         @endif
 
+                        @if($noCity != "City Not added")
+
                     </tbody>
                 </table>
             </div>
+
+            @endif
+
+            @if($noCity == "City Not added")
+            <div class="card-body mrg_bottom">
+                <h2>No Data found!</h2>
+            </div>
+
+            @endif
 
             <div class="clearfix"></div>
         </div>
