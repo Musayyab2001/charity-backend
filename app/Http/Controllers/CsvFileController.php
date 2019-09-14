@@ -35,9 +35,12 @@ class CsvFileController extends Controller
         $file_path = public_path('uploaded-files/ergebniss.csv');
         $collection = (new FastExcel)->configureCsv(';')->import($file_path, function ($line) {
             return Ergebnisse::firstOrCreate([
+                'lauf' => $line['Lauf'],
                 'stadt' => request()->stadt,
+                'datum' => $line['Datum'],
                 'lauf_jahr' => (int) request()->jahr,
-                'lauf_strecke' => (double) request()->strecke,
+                'lauf_strecke' => request()->strecke,
+                'gesamt_pl' => $line['GesamtPL'],
                 'MWPl' => $line['MWPl'],
                 'AKPl' => $line['AKPl'],
                 'start_number' => $line['Startnr.'],
@@ -50,6 +53,10 @@ class CsvFileController extends Controller
                 'brutto_zeit' => $line['Brutto-Zeit'],
             ]);
         });
+
+        // $collection = (new FastExcel)->configureCsv(',')->import($file_path);
+
+        // dd($collection);
 
         unlink($file_path);
 
