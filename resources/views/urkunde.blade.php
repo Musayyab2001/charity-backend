@@ -5,7 +5,7 @@
         <div class="card mrg_bottom">
             <div class="page_title_block">
                 <div class="col-md-5 col-xs-12">
-                    <div class="page_title">Sponsoren</div>
+                    <div class="page_title">Urkunde</div>
                 </div>
             </div>
 
@@ -43,40 +43,29 @@
             <div class="col-md-12 mrg-top mrg_bottom">
                 <div class="col-md-4 mrg-top mrg_bottom"></div>
                 <div class="col-md-3 mrg-top mrg_bottom">
-                    <form action="{{ route('csv.file.upload.post') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('create.urkunde.pdf') }}" method="POST" enctype="multipart/form-data">
 
                         @csrf
 
                         <td>
-                            <label for="stadt">Stadt auswählen:</label>
+                            <label for="stadt">Lauf Stadt auswählen:</label>
                             <input list="cities" name="stadt" placeholder="Stadt auswählen" class="form-control">
                             <datalist id="cities">
                                 @foreach($cities as $city)
-                                <option value="{{$city->city}}">
+                                <option value="{{$city->stadt}}">
                                     @endforeach
                             </datalist>
                         </td>
 
                         <td>
-                            <label for="stadt">Lauf jahr eingeben:</label>
-                            <input type="text" name="jahr" class="form-control"
-                                placeholder="Lauf jahr eingeben z.B. 2019">
+                            <label for="stadt">Start Nummer eingeben:</label>
+                            <input type="text" name="startnumber" class="form-control"
+                                placeholder="Start Nummer eingeben">
                         </td>
 
                         <td>
-                            <label for="stadt">Lauf strecke eingeben:</label>
-                            <input type="text" name="strecke" class="form-control"
-                                placeholder="Lauf strecke mit einheit eingeben z.B. 5 km">
-                        </td>
-
-                        <td>
-                            <label for="stadt">CSV Datei Hochladen:</label>
-                            <input type="file" name="file" class="form-control">
-                        </td>
-
-                        <td>
-                            <button type="submit" name="insert" id="insert"
-                                class="btn btn-success btn-md">Upload</button>
+                            <button type="submit" name="insert" id="insert" class="btn btn-success btn-md">Urkunde
+                                Erstellen</button>
                         </td>
 
                     </form>
