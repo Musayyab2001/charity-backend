@@ -14,15 +14,18 @@ class CreateErgebnissesTable extends Migration
     public function up()
     {
         Schema::create('ergebnisses', function (Blueprint $table) {
+            $table->string('lauf');
             $table->string('stadt');
+            $table->string('datum');
             $table->integer('lauf_jahr');
-            $table->double('lauf_strecke');
+            $table->string('lauf_strecke');
+            $table->string('gesamt_pl')->nullable();
             $table->string('MWPl')->nullable();
-            $table->string('AKPl')->nullable();
-            $table->string('start_number');
+            $table->integer('AKPl')->nullable();
+            $table->integer('start_number');
             $table->string('name')->nullable();
             $table->string('m_w')->nullable();
-            $table->string('birth_year')->nullable();
+            $table->integer('birth_year')->nullable();
             $table->string('verein')->nullable();
             $table->string('AK')->nullable();
             $table->string('netto_zeit')->nullable();
