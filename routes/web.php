@@ -34,3 +34,8 @@ Route::get('upload-csv', 'CsvFileController@index');
 Route::post('/upload-csv', 'CsvFileController@upload')->name('csv.file.upload.post');
 
 Route::get('/ergebnisse', 'ErgebnisseController@getErgebnisse')->name('ergebnisse');
+
+Route::get('urkunde', 'UrkundeController@index');
+Route::post('/urkunde', 'UrkundeController@createUrkunde')->name('create.urkunde.pdf');
+
+Route::get('urkunde-template/{startnumber}/{stadt}', 'UrkundeTemplateController@index');

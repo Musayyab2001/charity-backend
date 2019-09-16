@@ -22,3 +22,5 @@ Route::Resource('citybasicdata', 'api\ApiCityBasicDataController');
 Route::Resource('charityrecivers', 'api\ApiCharityReciverController');
 
 Route::Resource('sponsors', 'api\ApiSponsorController');
+
+Route::Resource('ergebnisse', 'api\ApiErgebnisseController');
