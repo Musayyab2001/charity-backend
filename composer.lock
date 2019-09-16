@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "99df95174a2ec10446374d785142aa5f",
+    "content-hash": "d78f0e57c27cede0b1f9463881f0de89",
     "packages": [
         {
             "name": "box/spout",
@@ -73,6 +73,59 @@
                 "xlsx"
             ],
             "time": "2017-09-25T19:44:35+00:00"
+        },
+        {
+            "name": "danielboendergaard/phantom-pdf",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danielboendergaard/phantom-pdf.git",
+                "reference": "c4068124768d4a77938db0d6642a23af1c5aec96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danielboendergaard/phantom-pdf/zipball/c4068124768d4a77938db0d6642a23af1c5aec96",
+                "reference": "c4068124768d4a77938db0d6642a23af1c5aec96",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/http-foundation": ">=2.6",
+                "symfony/process": ">=2.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PhantomPdf\\Laravel\\LaravelServiceProvider"
+                    ],
+                    "aliases": {
+                        "PDF": "PhantomPdf\\Laravel\\PDFFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhantomPdf\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Bøndergaard",
+                    "email": "danielboendergaard@gmail.com"
+                }
+            ],
+            "description": "A Package for generating PDF files using PhantomJS",
+            "keywords": [
+                "html",
+                "laravel",
+                "pdf"
+            ],
+            "time": "2017-09-21T09:00:23+00:00"
         },
         {
             "name": "defuse/php-encryption",
