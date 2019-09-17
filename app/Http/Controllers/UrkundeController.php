@@ -33,6 +33,7 @@ class UrkundeController extends Controller
 
         $pdf = new PdfGenerator;
 
+        // creating the pdf template
         $userErgebniss = DB::select('select * from ergebnisses where start_number = "' . $startnumber . '" and stadt = "' . $stadt . '"')[0];
         $url = view('urkunde-template', compact('userErgebniss'));
         $fileName = "urkunde.pdf";
