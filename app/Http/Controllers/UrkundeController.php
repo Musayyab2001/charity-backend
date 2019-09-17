@@ -36,9 +36,9 @@ class UrkundeController extends Controller
         // creating the pdf template
         $userErgebniss = DB::select('select * from ergebnisses where start_number = "' . $startnumber . '" and stadt = "' . $stadt . '"')[0];
         $url = view('urkunde-template', compact('userErgebniss'));
-        $fileName = "urkunde.pdf";
+        $fileName = "CWR-" . $startnumber . "-" . $stadt . "-urkunde.pdf";
         $pdf->setStoragePath(storage_path());
 
-        return $pdf->saveFromView($url, $fileName);
+        return $pdf->createFromView($url, $fileName);
     }
 }
