@@ -31,31 +31,13 @@ class UrkundeController extends Controller
         $stadt = request()->stadt;
         $startnumber = (int) request()->startnumber;
 
-        // $url = "https://" . $_SERVER['SERVER_NAME'] . "/urkunde-template/" . $startnumber . "/" . $stadt;
-
-        // $rasterizeJS = asset('assets/js/rasterize.js');
-
-        // $fileName = "urkunde.pdf";
-
-        // $shellCommand = "phantomjs " . $rasterizeJS . " '" . $url . "' " . $fileName;
-
-        // $output = system($shellCommand);
-
         $pdf = new PdfGenerator;
 
-        // $pdf->setBinaryPath($pdf->getBinaryPath());
-
-        $cities = DB::select('select distinct stadt from ergebnisses');
-
-        $html = view('urkunde', compact('cities'));
-
-        // Set a writable path for temporary files
+        $userErgebniss = DB::select('select * from ergebnisses where start_number = "' . $startnumber . '" and stadt = "' . $stadt . '"')[0];
+        $url = view('urkunde-template', compact('userErgebniss'));
+        $fileName = "urkunde.pdf";
         $pdf->setStoragePath(storage_path());
 
-        // Saves the PDF as a file (optional)
-        // $pdf->saveFromView($html, 'filename.pdf');
-
-        // Returns a Symfony\Component\HttpFoundation\BinaryFileResponse
-        return $pdf->saveFromView($html, 'filename.pdf');
+        return $pdf->saveFromView($url, $fileName);
     }
 }
