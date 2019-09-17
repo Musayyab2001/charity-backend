@@ -10,6 +10,6 @@ class ErgebnisseController extends Controller
     {
         $ergebnisse = Ergebnisse::paginate(20);
 
-        return view('Ergebnisse', compact('ergebnisse'));
+        return view('ergebnisse', compact('ergebnisse'));
     }
 }
