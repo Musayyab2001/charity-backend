@@ -31,7 +31,7 @@
     <div class="runner_info">
         <h2 class="cw_year">2019</h2>
         <p>{{$userErgebniss->name}}</p>
-        <p>erreichte beim {{$userErgebniss->lauf_strecke}} km Lauf eine Zeit von</p>
+        <p>erreichte beim {{$userErgebniss->lauf_strecke}} Lauf eine Zeit von</p>
         <p>{{$userErgebniss->netto_zeit}}</p>
         <div class="runner_3_details">
             <span>Gesamtwertung {{$userErgebniss->gesamt_pl}}.</span>
