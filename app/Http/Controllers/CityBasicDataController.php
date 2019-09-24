@@ -15,6 +15,8 @@ class CityBasicDataController extends Controller
 
     public function index()
     {
+        dd($this->site_settings);
+
         $data = DB::select('select * from city_basic_data where city = "Brakusview"');
 
         if (sizeof($data) > 0) {
@@ -23,7 +25,6 @@ class CityBasicDataController extends Controller
         } else {
             return view('basic');
         }
-
     }
 
     public function updateBasicData(Request $request)

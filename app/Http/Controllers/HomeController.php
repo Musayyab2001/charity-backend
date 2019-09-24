@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Illuminate\View\View;
+
 class HomeController extends Controller
 {
     /**
@@ -21,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Fetch the Site Settings object
+        $this->site_settings = User::all();
+        View::share('site_settings', $this->site_settings);
+
         return view('home');
     }
 }
