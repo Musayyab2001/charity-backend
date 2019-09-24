@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\View;
 
 
 class HomeController extends Controller
