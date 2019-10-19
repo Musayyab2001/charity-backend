@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 
 class CityBasicDataController extends Controller
@@ -18,7 +17,7 @@ class CityBasicDataController extends Controller
     public function index()
     {
 
-        $stadtName = Auth::user()->name;
+        $stadtName = view()->shared('stadt_name');
 
         $data = DB::select('select * from city_basic_data where city = "' . $stadtName . '"');
 
