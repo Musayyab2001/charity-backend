@@ -15,7 +15,8 @@ class CityBasicDataController extends Controller
 
     public function index()
     {
-        dd($this->site_settings);
+        dd(view()->shared('site_settings'));
+        // dd($this->site_settings);
 
         $data = DB::select('select * from city_basic_data where city = "Brakusview"');
 
