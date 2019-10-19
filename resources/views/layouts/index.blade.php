@@ -110,7 +110,7 @@
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-left">
-                            <li class="navbar-title">Charity Walk & run Backend fuer Stadt: &nbsp; <b>{{$stadt_name}}</b></li>
+                            <li class="navbar-title">Charity Walk & run Backend fuer Stadt: &nbsp; <b>{{ Auth::user()->name }}</b></li>
 
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
