@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class CityBasicDataController extends Controller
 {
@@ -15,10 +17,10 @@ class CityBasicDataController extends Controller
 
     public function index()
     {
-        dd(view()->shared('site_settings'));
-        // dd($this->site_settings);
 
-        $data = DB::select('select * from city_basic_data where city = "Brakusview"');
+        $stadtName = Auth::user()->name;
+
+        $data = DB::select('select * from city_basic_data where city = "' . $stadtName . '"');
 
         if (sizeof($data) > 0) {
             $data = json_decode(json_encode($data[0]), true);
